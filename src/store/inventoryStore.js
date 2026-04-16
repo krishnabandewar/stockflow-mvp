@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { useAuthStore } from './authStore'
 
-const API_URL = 'http://localhost:5000/api'
+const API_URL = 'https://stockflow-mvp-e8zb.onrender.com/api'
 
 export const useInventoryStore = create((set, get) => ({
   products: [],
