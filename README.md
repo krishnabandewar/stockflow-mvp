@@ -42,6 +42,32 @@ This application strictly adheres to the scope-reduced 6-Hour MVP requirements:
 
 ## 🏗️ Technical Architecture
 
+```mermaid
+graph TD
+    subgraph Vercel ["Client Domain (Vercel)"]
+        UI["React 18 UI (Tailwind)"]
+        State["Zustand Global Stores"]
+        Router["React Router v6"]
+        UI <--> State
+        UI <--> Router
+    end
+
+    subgraph Render ["Server Domain (Render)"]
+        API["Node.js + Express API"]
+        Middleware["JWT Auth Middleware"]
+        ORM["Prisma ORM Data Map"]
+        API --> Middleware
+        API <--> ORM
+    end
+
+    subgraph Database ["Cloud Database (Neon)"]
+        DB[("PostgreSQL\nRelational Data")]
+    end
+
+    State --"HTTP REST (JSON)"--> API
+    ORM --"TCP Protocol"--> DB
+```
+
 ### 💻 Frontend (Client-Side)
 - **Framework:** React 18 + Vite (Extremely fast HMR and compilation).
 - **Styling:** Tailwind CSS (Institutional "Emerald & Slate" Enterprise Dark Theme).
